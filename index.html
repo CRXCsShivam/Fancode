@@ -9,7 +9,6 @@
             --bg-color: #ffffff;
             --text-color: #000000;
             --button-bg: #4CAF50;
-            --button-hover-bg: #45a049;
             --contact-bg: #f9f9f9;
             --telegram-color: #0088cc;
             --gmail-color: #ea4335;
@@ -18,8 +17,6 @@
         [data-theme="dark"] {
             --bg-color: #121212;
             --text-color: #ffffff;
-            --button-bg: #1E88E5;
-            --button-hover-bg: #1565C0;
             --contact-bg: #222222;
         }
 
@@ -36,7 +33,6 @@
             justify-content: center;
             gap: 20px;
             margin-bottom: 20px;
-            animation: fadeIn 1s ease-in-out;
         }
 
         .contact-link {
@@ -47,7 +43,7 @@
             color: white;
             font-weight: bold;
             text-decoration: none;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: transform 0.3s ease;
             font-size: 16px;
         }
 
@@ -55,14 +51,6 @@
             width: 20px;
             height: 20px;
             margin-right: 10px;
-        }
-
-        .contact-link.telegram {
-            background-color: var(--telegram-color);
-        }
-
-        .contact-link.gmail {
-            background-color: var(--gmail-color);
         }
 
         .contact-link:hover {
@@ -82,22 +70,16 @@
             max-width: 100%;
         }
 
-        .watch-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: var(--button-bg);
-            color: white;
-            border: none;
-            border-radius: 5px;
+        #link-container a {
+            font-weight: bold;
+            color: var(--text-color);
             text-decoration: none;
+            margin-top: 5px;
             font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s;
         }
 
-        .watch-button:hover {
-            background-color: var(--button-hover-bg);
+        #link-container a:hover {
+            text-decoration: underline;
         }
 
         .theme-toggle {
@@ -109,22 +91,6 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--button-hover-bg);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
     </style>
 </head>
@@ -176,11 +142,11 @@
                             linkContainer.appendChild(descriptionElem);
                         }
 
-                        const button = document.createElement("button");
-                        button.textContent = "Click to Play";
-                        button.className = "watch-button";
-                        button.onclick = () => window.open(line, "_blank");
-                        linkContainer.appendChild(button);
+                        const link = document.createElement("a");
+                        link.href = line;
+                        link.textContent = line;
+                        link.target = "_blank"; // Open in a new tab
+                        linkContainer.appendChild(link);
 
                         container.appendChild(linkContainer);
 

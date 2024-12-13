@@ -31,7 +31,6 @@
             padding: 20px;
         }
 
-        /* Contact styling */
         #contact-container {
             display: flex;
             justify-content: center;
@@ -62,21 +61,14 @@
             background-color: var(--telegram-color);
         }
 
-        .contact-link.telegram:hover {
-            transform: scale(1.1);
-            background-color: #006cb7;
-        }
-
         .contact-link.gmail {
             background-color: var(--gmail-color);
         }
 
-        .contact-link.gmail:hover {
+        .contact-link:hover {
             transform: scale(1.1);
-            background-color: #c52e28;
         }
 
-        /* Style the container to center-align content */
         #link-container div {
             display: flex;
             flex-direction: column;
@@ -168,7 +160,6 @@
                         logoUrl = logoMatch ? logoMatch[1] : "";
                         const descriptionMatch = line.match(/#EXTINF.*?,(.*)/);
                         description = descriptionMatch ? descriptionMatch[1].trim() : "";
-                        description = description.replace(/tvg-logo=".*?"/, "").trim();
                     } else if (line.startsWith("http")) {
                         const linkContainer = document.createElement("div");
 
@@ -185,10 +176,10 @@
                             linkContainer.appendChild(descriptionElem);
                         }
 
-                        const button = document.createElement("a");
-                        button.href = line;
-                        button.textContent = "Click to Watch";
+                        const button = document.createElement("button");
+                        button.textContent = "Click to Play";
                         button.className = "watch-button";
+                        button.onclick = () => window.open(line, "_blank");
                         linkContainer.appendChild(button);
 
                         container.appendChild(linkContainer);

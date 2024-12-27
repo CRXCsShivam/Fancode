@@ -35,6 +35,11 @@
             transition: all 0.3s ease;
         }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         /* Center content */
         #link-container div {
             display: flex;
@@ -45,7 +50,7 @@
             position: relative;
         }
 
-        /* Logo styling with animated dots */
+        /* Logo styling with smaller animated frame */
         #link-container img {
             width: 350px;
             max-width: 100%;
@@ -57,10 +62,10 @@
         #link-container div::before {
             content: "";
             position: absolute;
-            width: 380px;
-            height: 380px;
+            width: 360px;
+            height: 360px;
             border-radius: 50%;
-            border: 4px solid transparent;
+            border: 3px solid transparent;
             animation: spin-dots 2s linear infinite;
             background: conic-gradient(#ff0000, #00ff00, #0000ff, #ff0000);
             z-index: 0;
@@ -119,9 +124,15 @@
             background-color: var(--button-hover-bg);
         }
 
-        /* Theme toggle styling */
-        .theme-toggle {
+        /* Theme toggle buttons */
+        .theme-buttons {
+            display: flex;
+            justify-content: center;
             margin-bottom: 20px;
+            gap: 10px;
+        }
+
+        .theme-buttons button {
             padding: 10px 20px;
             background-color: var(--button-bg);
             color: white;
@@ -132,13 +143,18 @@
             transition: background-color 0.3s;
         }
 
-        .theme-toggle:hover {
+        .theme-buttons button:hover {
             background-color: var(--button-hover-bg);
         }
     </style>
 </head>
 <body data-theme="dark">
-    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+    <h1>Welcome Everyone</h1>
+    <div class="theme-buttons">
+        <button onclick="setTheme('dark')">Dark Mode</button>
+        <button onclick="setTheme('light')">Light Mode</button>
+        <button onclick="setTheme('colorful')">Colorful Mode</button>
+    </div>
     <div id="link-container"></div>
 
     <script>
@@ -201,12 +217,8 @@
 
         fetchAndDisplayLinks();
 
-        function toggleTheme() {
-            const themes = ["dark", "light", "colorful"];
-            const currentTheme = document.documentElement.getAttribute("data-theme");
-            const currentIndex = themes.indexOf(currentTheme);
-            const nextTheme = themes[(currentIndex + 1) % themes.length];
-            document.documentElement.setAttribute("data-theme", nextTheme);
+        function setTheme(theme) {
+            document.documentElement.setAttribute("data-theme", theme);
         }
     </script>
 
